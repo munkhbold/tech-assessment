@@ -1,13 +1,19 @@
 
 import {Sequelize} from 'sequelize';
-// import { TicketModel, EventModel, OrderModel } from './models';
 import {
   TicketModel as TicketSchema,
   EventModel as EventSchema,
   OrderModel as OrderSchema
 } from './models/index';
 
-const sequelize = new Sequelize('ticket_order_db', 'postgres', 'root', {
+import dotenv from 'dotenv';
+
+dotenv.config();
+const db_name = process.env.DB_NAME;
+const username = process.env.DB_USER;
+const password = process.env.DB_PASSWORD;
+
+const sequelize = new Sequelize(db_name, username, password, {
   host: 'localhost',
   dialect: 'postgres',
   define: {

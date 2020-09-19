@@ -39,7 +39,7 @@ apiRouter.get('/events', async (request, response) => {
     }
     // filter by member_only
     if(member){
-        kwargs['member_only'] = 'false0off'.includes(member.toLowerCase()) ? false : true;
+        kwargs['member_only'] = 'true1'.includes(member.toLowerCase()) ? true : false;
     }
     // filter by id
     if(id){
@@ -59,16 +59,16 @@ apiRouter.get('/orders', async (request, response) => {
 });
 
 /**
- * Validate order input and throw an exception if there is incorrect data
+ * Validate order input data and throw an exception if there is incorrect data
  */
 const validateOrder = async (doc) => {
-    const {customerName, eventId, ticketId, quantity} = doc;
+    const {customerName, eventId, ticketId, quantity, isMember} = doc;
     if(!customerName){
-        throw new Error('customerName is required');
+        throw new Error('A customerName is required');
     }
 
     if(!eventId){
-        throw new Error('eventId is required');
+        throw new Error('An eventId is required');
     }
 
     const event = await Event.findOne({where: {id: eventId}});
@@ -77,7 +77,7 @@ const validateOrder = async (doc) => {
     }
 
     if(!ticketId){
-        throw new Error('ticketId is required');
+        throw new Error('A ticketId is required');
     }
 
     const ticket = await Ticket.findOne({where: {id: ticketId}});
@@ -85,8 +85,8 @@ const validateOrder = async (doc) => {
         throw new Error(`Ticket not found with id ${ticketId}`);
     }
 
-    if(!quantity || quantity < 1 ){
-        throw new Error(`quantity is required and must be greater than zero`);
+    if(!quantity || parseInt(quantity) < 1 || parseInt(quantity) > ticket.max_purchasable){
+        throw new Error(`A quantity must be greater than 0 less than ${ticket.max_purchasable}`);
     }
 }
 /**
@@ -108,7 +108,7 @@ apiRouter.post('/orders', async (request, response) => {
             ticket_type_id: ticketId,
             ticket_quantity: quantity,
             date_placed: Date.now(),
-            is_member_purchase: true
+            is_member_purchase: isMember == 'true' ? true : false
         });
         response.json(newOrder);
     } catch (error) {
