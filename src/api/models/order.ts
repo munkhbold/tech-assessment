@@ -5,7 +5,10 @@ const OrderModel = (sequelize, type) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      date_placed: type.TIME,
+      date_placed: {
+        type: type.DATE,
+        defaultValue: sequelize.NOW
+      },
       customer_name: type.STRING,
       event_id: type.INTEGER,
       ticket_type_id:  type.INTEGER,
