@@ -1,0 +1,24 @@
+{
+	"name": "ticket-order-api",
+	"version": "1.0.0",
+	"description": "A mock-up API for placing orders for a given event",
+	"main": "",
+	"scripts": {
+		"build-server": "tsc -p src/",
+		"watch-and-compile-dev-server": "tsc -w -p src/",
+		"run-dev-server": "nodemon dist/src/app.js",
+		"dev": "concurrently \"npm run watch-and-compile-dev-server\" \"npm run run-dev-server\"",
+		"start": "node dist/src/app.js"
+	},
+	"author": "The Barnes Foundation",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.17.1"
+	},
+	"devDependencies": {
+		"@types/node": "^14.11.1",
+		"concurrently": "^5.3.0",
+		"nodemon": "^2.0.4",
+		"typescript": "^4.0.2"
+	}
+}
