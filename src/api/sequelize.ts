@@ -6,14 +6,15 @@ import {
   OrderModel as OrderSchema
 } from './models/index';
 
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
 
 dotenv.config();
-const db_name = process.env.DB_NAME;
+
+const db_name = process.env.RUN_MODE == 'test' ? process.env.TEST_DB_NAME : process.env.DB_NAME;
 const username = process.env.DB_USER;
 const password = process.env.DB_PASSWORD;
 
-const sequelize = new Sequelize(db_name, username, password, {
+export const sequelize = new Sequelize(db_name, username, password, {
   host: 'localhost',
   dialect: 'postgres',
   define: {

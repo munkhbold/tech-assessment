@@ -6,8 +6,8 @@ const EventModel = (sequelize, type) => {
         autoIncrement: true,
       },
       event_name: type.STRING,
-      start_date: type.TIME,
-      end_date: type.TIME,
+      start_date: type.DATE,
+      end_date: type.DATE,
       member_only:  type.BOOLEAN,
       category:  type.STRING,
     });
