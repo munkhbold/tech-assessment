@@ -1,6 +1,8 @@
 **Instruction**
-# Installation
-1. Create `.env` file in the root directory at the same level as src. So you can add the following variables inside the `.env` file.
+## Installation
+
+1. Download source code `git clone git@github.com:munkhbold/tech-assessment.git`
+2. Create `.env` file in the root directory at the same level as src. So you can add the following variables inside the `.env` file.
 ```
     RUN_MODE=local
     TEST_DB_NAME=test_db_name
@@ -8,16 +10,21 @@
     DB_USER=user
     DB_PASSWORD=password
 ```
-2. Create databases with the name assigned to the following variables `TEST_DB_NAME` and `DB_NAME`
-3. You can install dependencies, run `npm install`.
+3. Create databases with the name assigned to the following variables `TEST_DB_NAME` and `DB_NAME`
+4. You can install dependencies, run `npm install`.
 
-# Start-server
+## Load initial data
+- You have to create a user with the name `cjativa` in the PostgreSQL
+- Load initial data to database `psql -U cjativa db_name < src/database/ticket_order_db.sql`
+- Load initial data to test databases `psql -U cjativa test_db_name < src/database/ticket_order_db.sql`
+
+## Start-server
 You can start server with `npm run dev` command.
 
-# Run-test
+## Run-test
 You can execute all tests with `npm run test-dev` command.
 
-# Routes
+## Routes
 - GET api/v1/events
 ```
   You can filter by query parameters such as id, name, cat and member.
