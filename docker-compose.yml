@@ -1,0 +1,33 @@
+version: '2.1'
+services:
+  app:
+    build: ./
+    container_name: app
+    # entrypoint: /bin/bash
+    # tty: true
+    environment:
+      RUN_MODE: local
+      TEST_DB_NAME: myapp_test
+      DB_NAME: myapp
+      DB_USER: postgres
+      DB_PASSWORD: E9C52uhcdHZyjepFVzrRYcCScNc84HtQ
+      DB_HOST: db
+      DB_PORT: 5432
+    ports:
+      - 127.0.0.1:3010:3010
+    networks:
+      - app
+
+  db:
+    image: postgres:10.14-alpine
+    container_name: db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: E9C52uhcdHZyjepFVzrRYcCScNc84HtQ
+      POSTGRES_DB: myapp
+    networks:
+      - app
+
+networks:
+  app:
+    driver: bridge
