@@ -1,7 +1,7 @@
 **Instruction**
 ## Installation
 
-1. Download source code `git clone git@github.com:munkhbold/tech-assessment.git`
+1. Download source code `git clone https://github.com/munkhbold/tech-assessment.git`
 2. Create `.env` file in the root directory at the same level as src. So you can add the following variables inside the `.env` file.
 ```
     RUN_MODE=local
