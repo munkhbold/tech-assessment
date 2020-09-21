@@ -9,6 +9,9 @@
     DB_NAME=db_name
     DB_USER=user
     DB_PASSWORD=password
+    DB_HOST=localhost
+    DB_PORT=5432
+    PORT=3010
 ```
 3. Create databases with the name assigned to the following variables `TEST_DB_NAME` and `DB_NAME`
 4. You can install dependencies, run `npm install`.

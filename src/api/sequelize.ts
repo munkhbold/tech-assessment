@@ -13,9 +13,10 @@ dotenv.config();
 const db_name = process.env.RUN_MODE == 'test' ? process.env.TEST_DB_NAME : process.env.DB_NAME;
 const username = process.env.DB_USER;
 const password = process.env.DB_PASSWORD;
+const host = process.env.DB_HOST;
 
 export const sequelize = new Sequelize(db_name, username, password, {
-  host: 'localhost',
+  host,
   dialect: 'postgres',
   define: {
     timestamps: false // true by default
